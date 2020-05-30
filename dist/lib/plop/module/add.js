@@ -69,7 +69,9 @@ function default_1(plop) {
             answers.page = answers.page || pages[0];
             answers.title = answers.title || answers.name;
             const name = chalk_1.default.blue(answers.name);
-            answers.layout = Object.keys(config_1.Layout)[Object.values(config_1.Layout).indexOf(answers.addToSidebar)];
+            if (answers.addToSidebar) {
+                answers.layout = Object.keys(config_1.Layout)[Object.values(config_1.Layout).indexOf(answers.addToSidebar)];
+            }
             return [
                 ...actions_1.default.add(answers, dest),
                 [

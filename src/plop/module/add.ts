@@ -63,7 +63,9 @@ export default function(plop): any {
         answers.page = answers.page || pages[0];
         answers.title = answers.title || answers.name;
         const name = chalk.blue(answers.name);
-        answers.layout = Object.keys(Layout)[Object.values(Layout).indexOf(answers.addToSidebar)];
+        if (answers.addToSidebar) {
+            answers.layout = Object.keys(Layout)[Object.values(Layout).indexOf(answers.addToSidebar)];
+        }
         return [
             ...actions.add(answers, dest),
             [
