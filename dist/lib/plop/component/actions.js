@@ -11,7 +11,7 @@ exports.default = {
     add(answers, root) {
         const basePath = path_1.default.join(root, './src/global/components');
         const sub = answers.directory.split('/');
-        sub[0] = '';
+        sub.unshift('');
         return [
             {
                 type: 'add',
