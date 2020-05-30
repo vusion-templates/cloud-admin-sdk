@@ -5,7 +5,7 @@ interface PageInfo {
     layout: Layout;
 }
 declare const _default: {
-    add(pageInfo: PageInfo, root: string): (string | object | Function)[];
-    remove(pageInfo: PageInfo, root: string): (string | object | Function)[];
+    add(pageInfo: PageInfo, root: string): Array<Function | object | string>;
+    remove(pageInfo: PageInfo, root: string): Array<Function | object | string>;
 };
 export default _default;
