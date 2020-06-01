@@ -1,7 +1,7 @@
 import chalk = require('chalk');
 import * as path from 'path';
 import actions from './actions';
-import { Layout } from '../../functions/page/config';
+import { Layout } from '../../meta/page/config';
 export default function(plop): any {
     const dest = plop.getDestBasePath();
     return {

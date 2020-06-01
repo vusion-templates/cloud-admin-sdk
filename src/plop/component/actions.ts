@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { templatePath } from '../../utils';
 const fixComponentName = function (name: string): string {
     return name.replace(/^[a-z]/, (a) => a.toUpperCase()).replace(/-([a-z])/g, (a, b) => b.toUpperCase()).replace('.vue', '');
 };
@@ -11,7 +12,7 @@ export default  {
             {
                 type: 'add',
                 path: path.join(basePath, answers.directory, answers.name + '.vue'),
-                templateFile: path.join(__dirname, '../../../../template/component/index.vue'),
+                templateFile: path.join(templatePath, './component/index.vue'),
             },
             {
                 type: 'modify',

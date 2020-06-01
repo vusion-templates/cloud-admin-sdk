@@ -22,10 +22,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs-extra"));
 const utils_1 = require("../../utils");
-const config_1 = require("../../functions/module/config");
+const config_1 = require("../../meta/module/config");
 exports.default = {
     add(answers, root) {
-        const base = path.join(__dirname, '../../../../template/module');
+        const base = path.join(utils_1.templatePath, 'module');
         const pagePath = path.join(root, './src/views', answers.page);
         return [
             function () {

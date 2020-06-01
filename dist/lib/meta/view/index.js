@@ -20,27 +20,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
-const utils_1 = require("../../utils");
-const fixComponentName = function (name) {
-    return name.replace(/^[a-z]/, (a) => a.toUpperCase()).replace(/-([a-z])/g, (a, b) => b.toUpperCase()).replace('.vue', '');
-};
-exports.default = {
-    add(answers, root) {
-        const basePath = path.join(root, './src/global/components');
-        const sub = answers.directory.split('/');
-        sub.unshift('');
-        return [
-            {
-                type: 'add',
-                path: path.join(basePath, answers.directory, answers.name + '.vue'),
-                templateFile: path.join(utils_1.templatePath, './component/index.vue'),
-            },
-            {
-                type: 'modify',
-                pattern: /\s+$/,
-                path: path.join(basePath, 'index.js'),
-                template: `\nexport { default as ${fixComponentName(answers.name)} } from '.${sub.join('/')}/${answers.name}.vue';\n`,
-            },
-        ];
+class View {
+    constructor(name, module, page, root, parent) {
+        this.name = name;
+        this.module = module;
+        this.page = page;
+        this.root = root;
+        if (parent) {
+            this.parent = parent;
+        }
     }
-};
+    getFullPath() {
+        return path.join(this.root, this.page, this.module, 'views', this.name);
+    }
+}
+exports.default = View;

@@ -1,6 +1,6 @@
-import Project from './functions/project';
-import Page from './functions/page';
-import Module from './functions/module';
-import Service from './functions/module';
-import Component from './functions/component';
+import Project from './meta/project';
+import Page from './meta/page';
+import Module from './meta/module';
+import Service from './meta/module';
+import Component from './meta/component';
 export { Project, Page, Module, Service, Component, };

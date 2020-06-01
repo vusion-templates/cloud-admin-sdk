@@ -25,7 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const chalk = require("chalk");
 const path = __importStar(require("path"));
 const actions_1 = __importDefault(require("./actions"));
-const config_1 = require("../../functions/page/config");
+const config_1 = require("../../meta/page/config");
 function default_1(plop) {
     const dest = plop.getDestBasePath();
     return {

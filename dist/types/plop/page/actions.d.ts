@@ -1,4 +1,4 @@
-import { Layout } from '../../functions/page/config';
+import { Layout } from '../../meta/page/config';
 interface PageInfo {
     name: string;
     title: string;

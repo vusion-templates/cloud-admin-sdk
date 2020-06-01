@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import { Layout } from '../../functions/page/config';
-import { fixSlash, getModuleOrder, setModuleOrder, ModuleOrder } from '../../utils';
+import { Layout } from '../../meta/page/config';
+import { fixSlash, getModuleOrder, setModuleOrder, ModuleOrder, templatePath } from '../../utils';
 interface PageInfo {
     name: string;
     title: string;
@@ -20,7 +20,7 @@ export default {
     add(pageInfo: PageInfo, root: string): Array<Function|object|string> {
         const { name, layout, title } = pageInfo;
         const dest = path.join(root, './src/views', pageInfo.name);
-        const base = path.join(__dirname, '../../../../template/page');
+        const base = path.join(templatePath, 'page');
         return [
             function (): void|Error {
                 if (!name) {

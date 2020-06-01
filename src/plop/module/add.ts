@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs-extra';
 import chalk = require('chalk');
 import {getAppConfig} from '../../utils';
-import { Layout } from '../../functions/module/config';
+import { Layout } from '../../meta/module/config';
 import actions from './actions';
 
 export default function(plop): any {

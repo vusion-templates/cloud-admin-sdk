@@ -21,7 +21,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs-extra"));
-const config_1 = require("../../functions/page/config");
+const config_1 = require("../../meta/page/config");
 const utils_1 = require("../../utils");
 const utils = {
     loadPage(root) {
@@ -35,7 +35,7 @@ exports.default = {
     add(pageInfo, root) {
         const { name, layout, title } = pageInfo;
         const dest = path.join(root, './src/views', pageInfo.name);
-        const base = path.join(__dirname, '../../../../template/page');
+        const base = path.join(utils_1.templatePath, 'page');
         return [
             function () {
                 if (!name) {

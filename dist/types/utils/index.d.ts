@@ -1,4 +1,5 @@
 export declare const fixSlash: (filePath: string) => string;
+export declare const templatePath: string;
 export declare const getFile: (filePath: string) => object;
 export declare type ModuleOrder = {
     sidebar: string[];

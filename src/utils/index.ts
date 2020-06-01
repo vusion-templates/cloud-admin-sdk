@@ -4,6 +4,7 @@ import * as fs from 'fs-extra';
 export const fixSlash = function (filePath: string): string {
     return filePath.split(path.sep).join('/');
 };
+export const templatePath = path.join(__dirname, '../../../template');
 export const getFile = function(filePath: string): object {
     let obj;
     if (fs.existsSync(filePath)) {

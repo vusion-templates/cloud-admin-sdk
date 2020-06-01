@@ -1,11 +1,11 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import { fixSlash, getModuleOrder, setModuleOrder } from '../../utils';
-import { Layout } from '../../functions/module/config';
+import { fixSlash, getModuleOrder, setModuleOrder, templatePath } from '../../utils';
+import { Layout } from '../../meta/module/config';
 
 export default {
     add(answers, root: string): Array<Function|object|string> {
-        const base = path.join(__dirname, '../../../../template/module');
+        const base = path.join(templatePath, 'module');
         const pagePath = path.join(root, './src/views', answers.page);
         return [
             function(): void|Error {

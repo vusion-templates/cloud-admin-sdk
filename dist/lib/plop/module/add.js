@@ -26,7 +26,7 @@ const path = __importStar(require("path"));
 const fs = __importStar(require("fs-extra"));
 const chalk = require("chalk");
 const utils_1 = require("../../utils");
-const config_1 = require("../../functions/module/config");
+const config_1 = require("../../meta/module/config");
 const actions_1 = __importDefault(require("./actions"));
 function default_1(plop) {
     const dest = plop.getDestBasePath();
