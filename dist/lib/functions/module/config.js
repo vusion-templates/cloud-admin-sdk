@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Layout = void 0;
 var Layout;
 (function (Layout) {
     Layout["sidebar"] = "\u6DFB\u52A0\u5230\u5DE6\u4FA7\u5BFC\u822A\u680F";
