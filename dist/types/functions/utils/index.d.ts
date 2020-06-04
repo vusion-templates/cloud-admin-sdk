@@ -5,6 +5,6 @@ export declare type PlopConfig = {
 };
 declare const _default: {
     loadPages(root: string): object;
-    getPlop(config: PlopConfig): any;
+    getPlop(config: PlopConfig): NodePlop;
 };
 export default _default;

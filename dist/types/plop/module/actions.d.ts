@@ -1,5 +1,5 @@
 declare const _default: {
-    add(answers: any, root: string): (string | object | Function)[];
-    remove(answers: any, root: string): (string | object | Function)[];
+    add(answers: any, root: string): Array<Function | object | string>;
+    remove(answers: any, root: string): Array<Function | object | string>;
 };
 export default _default;
