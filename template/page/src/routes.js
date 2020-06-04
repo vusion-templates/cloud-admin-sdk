@@ -1,9 +1,10 @@
 import Layout from './layout/views/index.vue';
-import AppConfig from './app.config';
+import { LWrapper } from 'cloud-ui.vusion';
+import appConfig from './app.config';
 import moduleInfos from './modules';
 import Utils from '@/global/utils';
-let defaultRoute = AppConfig.router.defaults;
-let notFoundRoute = AppConfig.router.notFound;
+let defaultRoute = appConfig.router.defaults;
+let notFoundRoute = appConfig.router.notFound;
 
 if (!Utils.hasRoute(moduleInfos.routes, defaultRoute)) {
     if (moduleInfos.routes.length) {
@@ -20,7 +21,7 @@ if (!Utils.hasRoute(moduleInfos.routes, notFoundRoute)) {
 export default [
     {
         path: '/',
-        component: Layout,
+        component: appConfig.layout === 'noNav' ? LWrapper : Layout,
         children: [
             { path: '', redirect: defaultRoute },
             ...moduleInfos.routes,
