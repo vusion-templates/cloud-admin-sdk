@@ -12,6 +12,7 @@ export default {
                 return;
             }
             instance = new Vue({
+                name: 'app',
                 router: initRouter(data.customProps.prefix),
                 ...App,
             }).$mount(data.customProps.node);
