@@ -2,11 +2,11 @@ import Layout from './layout/views/index.vue';
 import { LWrapper } from 'cloud-ui.vusion';
 import appConfig from './app.config';
 import moduleInfos from './modules';
-import Utils from '@/global/utils';
+import utils from '@/global/utils';
 let defaultRoute = appConfig.router.defaults;
 let notFoundRoute = appConfig.router.notFound;
 
-if (!Utils.hasRoute(moduleInfos.routes, defaultRoute)) {
+if (!utils.hasRoute(moduleInfos.routes, defaultRoute)) {
     if (moduleInfos.routes.length) {
         defaultRoute = moduleInfos.routes[0].path;
     } else {
@@ -14,7 +14,7 @@ if (!Utils.hasRoute(moduleInfos.routes, defaultRoute)) {
     }
 }
 
-if (!Utils.hasRoute(moduleInfos.routes, notFoundRoute)) {
+if (!utils.hasRoute(moduleInfos.routes, notFoundRoute)) {
     notFoundRoute = '/';
 }
 
