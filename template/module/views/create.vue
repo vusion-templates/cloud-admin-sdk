@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         submit() {
-            return this.$services.{{name}}.default.create({
+            return this.$services.{{name}}.instance.create({
                 url: {
                     body: this.model,
                 },

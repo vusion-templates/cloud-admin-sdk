@@ -7,7 +7,7 @@
             <u-button color="primary" icon="create" to="/{{ name }}/create">创建{{ title }}</u-button>
             <u-button square icon="refresh" @click="$refs.tableView.reload()"></u-button>
         </u-linear-layout>
-        <u-table-view ref="tableView" :data-source="$services.{{name}}.default.loadList">
+        <u-table-view ref="tableView" :data-source="$services.{{name}}.instance.loadList">
             <u-table-view-column type="checkbox" width="8%"></u-table-view-column>
             <u-table-view-column title="名称">
                 <template slot="cell" slot-scope="{ item }">
