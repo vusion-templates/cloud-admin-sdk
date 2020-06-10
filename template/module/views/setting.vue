@@ -1,11 +1,11 @@
 <template>
     <u-linear-layout direction="vertical">
         <u-form gap="large" @validate="valid = $event.valid">
-            <u-form-item label="名称" required>
-                <u-input v-model="model.Name" size="huge" maxlength="24" placeholder="1-24位小写字母、数字或中划线组成，以字母开头，字母或数字结尾"></u-input>
+            <u-form-item label="名称" required rules="required | alphaNumDash | rangeLength(1,63)">
+                <u-input v-model="model.name" size="huge" maxlength="24" placeholder="由1-63个小写字母，数字，中划线组成"></u-input>
             </u-form-item>
             <u-form-item label="描述">
-                <u-input v-model="model.Description" size="huge"></u-input>
+                <u-input v-model="model.description" size="huge"></u-input>
             </u-form-item>
             <u-form-item>
                 <u-button color="primary"
@@ -19,14 +19,12 @@
 </template>
 
 <script>
-import {{ name }}Service from '../service';
-
 export default {
     data() {
         return {
             model: {
-                Name: '',
-                Description: '',
+                name: '',
+                description: '',
             },
             instance: {},
             valid: false,
@@ -35,7 +33,7 @@ export default {
     },
     computed: {
         canSubmit() {
-            return this.model.Name !== this.instance.Name || this.model.Description !== this.instance.Description;
+            return this.model.name !== this.instance.name || this.model.description !== this.instance.description;
         },
     },
     created() {
@@ -43,21 +41,21 @@ export default {
     },
     methods: {
         getDetail() {
-            return {{ name }}Service.loadDetail({
+            return this.$services.{{name}}.default.loadDetail({
                 url: {
                     query: {
-                        InstanceId: this.$route.query.id,
+                        id: this.$route.query.id,
                     },
                 },
             }).then((info) => {
-                const instance = this.instance = info.data.data;
-                this.model.InstanceId = instance.InstanceId;
-                this.model.Name = instance.Name;
-                this.model.Description = instance.Description;
+                const instance = this.instance = info.data;
+                this.model.id = instance.id;
+                this.model.name = instance.name;
+                this.model.description = instance.description;
             });
         },
         submit() {
-            return {{ name }}Service.update({
+            return this.$services.{{name}}.default.update({
                 url: {
                     body: this.model,
                 },

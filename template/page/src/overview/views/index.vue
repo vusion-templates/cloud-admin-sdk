@@ -1,6 +1,6 @@
 <template>
     <div>
-        overview
+        <span>overview</span>
     </div>
 </template>
 <script>
