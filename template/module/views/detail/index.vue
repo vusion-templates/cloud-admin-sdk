@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import {{ name }}Service from '../../service';
 import { MPublisher } from 'cloud-ui.vusion';
 
 export default {
@@ -36,7 +35,7 @@ export default {
     },
     methods: {
         getDetail() {
-            {{ name }}Service.loadDetail({
+            this.$services.{{name}}.default.loadDetail({
                 url: {
                     query: {
                         InstanceId: this.$route.query.id,

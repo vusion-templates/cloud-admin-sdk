@@ -1,0 +1,18 @@
+{
+    "loadList": {
+        "path": "/mock/loadList",
+        "method": "get"
+    },
+    "loadDetail": {
+        "path": "/mock/loadDetail",
+        "method": "get"
+    },
+    "create": {
+        "path": "/mock/create",
+        "method": "post"
+    },
+    "update": {
+        "path": "/mock/update",
+        "method": "put"
+    }
+}

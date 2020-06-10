@@ -1,11 +1,11 @@
 <template>
     <u-linear-layout direction="vertical">
         <u-form gap="large" @validate="valid = $event.valid">
-            <u-form-item label="名称" required :rules="rules.Name">
-                <u-input v-model="model.Name" size="huge" maxlength="24" placeholder="1-24位小写字母、数字或中划线组成，以字母开头，字母或数字结尾"></u-input>
+            <u-form-item label="名称" required rules="required | alphaNumDash | rangeLength(1,63)">
+                <u-input v-model="model.name" size="huge" maxlength="24" placeholder="由1-63个小写字母，数字，中划线组成"></u-input>
             </u-form-item>
             <u-form-item label="描述">
-                <u-input v-model="model.Description" size="huge"></u-input>
+                <u-input v-model="model.description" size="huge"></u-input>
             </u-form-item>
             <u-form-item>
                 <u-button color="primary"
@@ -19,25 +19,15 @@
 </template>
 
 <script>
-import {{ name }}Service from '../service';
-
 export default {
     data() {
         return {
             model: {
-                Name: '',
-                Description: '',
+                name: '',
+                description: '',
             },
             valid: false,
             submitting: false,
-            rules: {
-                Name: [
-                    { type: 'string', required: true, trigger: 'blur', message: '请输入名称' },
-                    { type: 'string', min: 1, max: 24, pattern: /^[a-z0-9-]+$/, trigger: 'input+blur', message: '1-24位小写字母、数字或中划线组成' },
-                    { type: 'string', min: 1, max: 24, pattern: /^[a-z]/, trigger: 'input+blur', message: '请以字母开头' },
-                    { type: 'string', min: 1, max: 24, pattern: /[a-z0-9]$/, trigger: 'input+blur', message: '请以字母或数字结尾' },
-                ],
-            },
         };
     },
     computed: {
@@ -47,7 +37,7 @@ export default {
     },
     methods: {
         submit() {
-            return {{ name }}Service.create({
+            return this.$services.{{name}}.default.create({
                 url: {
                     body: this.model,
                 },
