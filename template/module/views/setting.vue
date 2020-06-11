@@ -42,10 +42,8 @@ export default {
     methods: {
         getDetail() {
             return this.$services.mock.entity.loadDetail({
-                url: {
-                    query: {
-                        id: this.$route.query.id,
-                    },
+                query: {
+                    id: this.$route.query.id,
                 },
             }).then((info) => {
                 const instance = this.instance = info.data;
@@ -56,9 +54,7 @@ export default {
         },
         submit() {
             return this.$services.mock.entity.update({
-                url: {
-                    body: this.model,
-                },
+                body: this.model,
             }).then(() => this.$router.push('/{{ name }}'));
         },
     },

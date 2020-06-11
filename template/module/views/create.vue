@@ -38,9 +38,7 @@ export default {
     methods: {
         submit() {
             return this.$services.mock.entity.create({
-                url: {
-                    body: this.model,
-                },
+                body: this.model,
             }).then(() => this.$router.push('/{{ name }}'));
         },
     },

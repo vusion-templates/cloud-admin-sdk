@@ -36,10 +36,8 @@ export default {
     methods: {
         getDetail() {
             this.$services.mock.entity.loadDetail({
-                url: {
-                    query: {
-                        InstanceId: this.$route.query.id,
-                    },
+                query: {
+                    InstanceId: this.$route.query.id,
                 },
             }).then(({ data }) => this.instance = data.data);
         },
