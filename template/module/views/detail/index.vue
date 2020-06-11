@@ -1,6 +1,6 @@
 <template>
     <div>
-        <u-head-card :title="instance.Name">
+        <u-head-card :title="instance.name">
             <div slot="info">
                 <ul>
                     <li><label>公网 IP：</label>127.0.0.1</li>
