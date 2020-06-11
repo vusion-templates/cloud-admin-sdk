@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         submit() {
-            return this.$services.{{name}}.default.create({
+            return this.$services.mock.entity.create({
                 url: {
                     body: this.model,
                 },

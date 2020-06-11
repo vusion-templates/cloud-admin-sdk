@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         getDetail() {
-            return this.$services.{{name}}.default.loadDetail({
+            return this.$services.mock.entity.loadDetail({
                 url: {
                     query: {
                         id: this.$route.query.id,
@@ -55,7 +55,7 @@ export default {
             });
         },
         submit() {
-            return this.$services.{{name}}.default.update({
+            return this.$services.mock.entity.update({
                 url: {
                     body: this.model,
                 },
