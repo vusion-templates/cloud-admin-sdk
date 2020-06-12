@@ -37,9 +37,9 @@ export default {
     },
     methods: {
         submit() {
-            // return this.$services.{{ name }}.entity.create({
-            //     body: this.model,
-            // }).then(() => this.$router.push('/{{ name }}'));
+            return this.$services.{{ name }}.entity.create({
+                body: this.model,
+            }).then(() => this.$router.push('/{{ name }}'));
         },
     },
 };

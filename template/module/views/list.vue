@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         load() {
-            // return this.$services.{{ name }}.entity.loadList();
+            return this.$services.{{ name }}.entity.loadList();
         },
     },
 };

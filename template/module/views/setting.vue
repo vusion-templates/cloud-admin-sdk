@@ -41,21 +41,21 @@ export default {
     },
     methods: {
         getDetail() {
-            // return this.$services.{{ name }}.entity.loadDetail({
-            //     query: {
-            //         id: this.$route.query.id,
-            //     },
-            // }).then((info) => {
-            //     const instance = this.instance = info.data;
-            //     this.model.id = instance.id;
-            //     this.model.name = instance.name;
-            //     this.model.description = instance.description;
-            // });
+            return this.$services.{{ name }}.entity.loadDetail({
+                query: {
+                    id: this.$route.query.id,
+                },
+            }).then((info) => {
+                const instance = this.instance = info.data;
+                this.model.id = instance.id;
+                this.model.name = instance.name;
+                this.model.description = instance.description;
+            });
         },
         submit() {
-            // return this.$services.{{ name }}.entity.update({
-            //     body: this.model,
-            // }).then(() => this.$router.push('/{{ name }}'));
+            return this.$services.{{ name }}.entity.update({
+                body: this.model,
+            }).then(() => this.$router.push('/{{ name }}'));
         },
     },
 };
