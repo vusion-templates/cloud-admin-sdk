@@ -37,10 +37,8 @@ export default {
     },
     methods: {
         submit() {
-            return this.$services.{{name}}.instance.create({
-                url: {
-                    body: this.model,
-                },
+            return this.$services.{{ name }}.entity.create({
+                body: this.model,
             }).then(() => this.$router.push('/{{ name }}'));
         },
     },

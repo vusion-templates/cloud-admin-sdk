@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <u-linear-layout direction="vertical">
         <span>overview</span>
-    </div>
+    </u-linear-layout>
 </template>
 <script>
 export default {

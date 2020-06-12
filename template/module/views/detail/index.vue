@@ -1,6 +1,6 @@
 <template>
     <div>
-        <u-head-card :title="instance.Name">
+        <u-head-card :title="instance.name">
             <div slot="info">
                 <ul>
                     <li><label>公网 IP：</label>127.0.0.1</li>
@@ -35,11 +35,9 @@ export default {
     },
     methods: {
         getDetail() {
-            this.$services.{{name}}.instance.loadDetail({
-                url: {
-                    query: {
-                        InstanceId: this.$route.query.id,
-                    },
+            this.$services.{{ name }}.entity.loadDetail({
+                query: {
+                    InstanceId: this.$route.query.id,
                 },
             }).then(({ data }) => this.instance = data.data);
         },

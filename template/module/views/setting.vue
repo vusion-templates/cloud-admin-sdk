@@ -41,11 +41,9 @@ export default {
     },
     methods: {
         getDetail() {
-            return this.$services.{{name}}.instance.loadDetail({
-                url: {
-                    query: {
-                        id: this.$route.query.id,
-                    },
+            return this.$services.{{ name }}.entity.loadDetail({
+                query: {
+                    id: this.$route.query.id,
                 },
             }).then((info) => {
                 const instance = this.instance = info.data;
@@ -55,10 +53,8 @@ export default {
             });
         },
         submit() {
-            return this.$services.{{name}}.instance.update({
-                url: {
-                    body: this.model,
-                },
+            return this.$services.{{ name }}.entity.update({
+                body: this.model,
             }).then(() => this.$router.push('/{{ name }}'));
         },
     },
