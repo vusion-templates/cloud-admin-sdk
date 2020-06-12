@@ -35,11 +35,11 @@ export default {
     },
     methods: {
         getDetail() {
-            this.$services.mock.entity.loadDetail({
-                query: {
-                    InstanceId: this.$route.query.id,
-                },
-            }).then(({ data }) => this.instance = data.data);
+            // this.$services.{{ name }}.entity.loadDetail({
+            //     query: {
+            //         InstanceId: this.$route.query.id,
+            //     },
+            // }).then(({ data }) => this.instance = data.data);
         },
     },
     publish: {
