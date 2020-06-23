@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import path from 'path';
 import actions from './actions';
 import { Layout } from '../../functions/page/config';
 export default function(plop): any {
@@ -34,6 +35,7 @@ export default function(plop): any {
             if (answers.layoutString) {
                 answers.layout = Object.keys(Layout)[Object.values(Layout).indexOf(answers.layoutString)];
             }
+            answers.appName = require(path.join(dest, 'package.json')).name.replace(/-client$/, '');
             return [
                 ...actions.add(answers, dest),
                 [

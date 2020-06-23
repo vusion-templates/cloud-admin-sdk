@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
+const path_1 = __importDefault(require("path"));
 const actions_1 = __importDefault(require("./actions"));
 const config_1 = require("../../functions/page/config");
 function default_1(plop) {
@@ -41,6 +42,7 @@ function default_1(plop) {
             if (answers.layoutString) {
                 answers.layout = Object.keys(config_1.Layout)[Object.values(config_1.Layout).indexOf(answers.layoutString)];
             }
+            answers.appName = require(path_1.default.join(dest, 'package.json')).name.replace(/-client$/, '');
             return [
                 ...actions_1.default.add(answers, dest),
                 [
