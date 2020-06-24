@@ -7,7 +7,8 @@ export function initRouter(base) {
     routerInstance = router(
         routes,
         base || process.env.VUE_APP_BASEURL || '/{{ name }}',
-        (title) => title + ' - ' + appConfig.title
+        (title) => title + ' - ' + appConfig.title,
+        appConfig.auth && { redirect: appConfig.router.unauthorized, domainName: appConfig.project },
     );
     return routerInstance;
 }
