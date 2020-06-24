@@ -8,6 +8,6 @@ export function initRouter(base) {
         routes,
         base || process.env.VUE_APP_BASEURL || '/{{ name }}',
         (title) => title + ' - ' + appConfig.title,
-        appConfig.auth && { redirect: appConfig.router.unauthorized },
+        appConfig.auth && { redirect: appConfig.router.unauthorized, domainName: appConfig.project },
     );
 }
