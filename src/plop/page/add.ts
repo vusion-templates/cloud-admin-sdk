@@ -29,6 +29,12 @@ export default function(plop): any {
                 default: 0,
                 message: '请选择导航栏模式',
             },
+            {
+                type: 'boolean',
+                name: 'auth',
+                default: true,
+                message: '是否需要登录验证（默认为 true）',
+            },
         ],
         actions(answers): ReturnType<typeof actions.add> {
             const { name } = answers;

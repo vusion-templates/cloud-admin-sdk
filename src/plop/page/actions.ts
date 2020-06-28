@@ -7,6 +7,7 @@ interface PageInfo {
     name: string;
     title: string;
     layout: Layout;
+    auth: boolean;
 }
 const utils = {
     loadPage(root: string): object {

@@ -3,6 +3,7 @@ interface PageInfo {
     name: string;
     title: string;
     layout: Layout;
+    auth: boolean;
 }
 declare const _default: {
     add(pageInfo: PageInfo, root: string): Array<Function | object | string>;
