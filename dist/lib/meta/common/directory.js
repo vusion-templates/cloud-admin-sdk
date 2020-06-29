@@ -18,35 +18,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs-extra"));
 const path = __importStar(require("path"));
-const node_plop_1 = __importDefault(require("node-plop"));
-exports.default = {
-    loadPages(root) {
-        return JSON.parse(fs.readFileSync(path.join(root, './pages.json')).toString());
-    },
-    getPlop(config) {
-        let file = path.join(process.cwd(), 'plopfile.js');
-        if (!fs.existsSync(file)) {
-            file = path.join(__dirname, '../../cli/plopfile.js');
-        }
-        const plop = node_plop_1.default(file, {
-            destBasePath: config.root,
-            force: !!config.force,
-        });
-        return plop;
-    },
-    getPagePath(answer) {
-        return path.join(answer.root, answer.page);
-    },
-    getModulePath(answer) {
-        return path.join(answer.root, answer.page, answer.module);
-    },
-    getViewPath(answer) {
-        return path.join(answer.root, answer.page, answer.module, 'views');
-    },
-};
+class Directory {
+    constructor(directoryPath) {
+        this.directoryPath = directoryPath;
+    }
+    remove() {
+        return fs.removeSync(this.directoryPath);
+    }
+    dir(options) {
+        return fs.readdirSync(this.directoryPath, options);
+    }
+    rename(name) {
+        return fs.renameSync(this.directoryPath, path.join(this.directoryPath, '..', name));
+    }
+}
+exports.default = Directory;

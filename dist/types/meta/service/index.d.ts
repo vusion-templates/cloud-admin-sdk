@@ -1,28 +1,27 @@
+import Module from '../module';
 import { ProjectPath } from '../common';
+import Tree from '../common/tree';
 interface ServicePath {
     root: string;
-    page: string;
-    module: string;
+    name: string;
 }
 export interface AddService extends ServicePath {
-    name: string;
-    content: object;
+    api?: string;
 }
-export interface RemoveService extends ServicePath {
-    name: string;
-}
-export default class Service<T> implements ProjectPath {
-    name: string;
-    module: string;
-    page: string;
-    root: string;
-    parent?: T;
-    constructor(name: string, module: string, page: string, root: string, parent?: T);
+export declare type RemoveService = ServicePath;
+declare type serviceContent = {
+    api?: string;
+    config?: string;
+    index?: string;
+};
+export default class Service extends Tree implements ProjectPath {
+    private subFiles;
+    constructor(name: string, root: string, parent: Module);
     getFullPath(): string;
-    load(): void;
-    save(): void;
-    remove(): void;
-    static add(answers: AddService): string;
+    load(): serviceContent;
+    save(content: serviceContent): void;
+    rename(newName: string): void;
+    static add(answers: AddService): void;
     static remove(answers: RemoveService): void;
 }
 export {};

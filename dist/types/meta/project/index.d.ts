@@ -2,13 +2,16 @@ import Page, { AddPage, RemovePage } from '../page';
 import Component, { AddComponent } from '../component';
 import { PlopConfig } from '../utils';
 import { ProjectPath } from '../common';
-export default class Project implements ProjectPath {
-    root: string;
-    constructor(root: any);
+import Tree from '../common/tree';
+export default class Project extends Tree implements ProjectPath {
+    client: string;
+    server: string;
+    cachePages: Page[];
+    constructor(name: string, root: string);
     getFullPath(): string;
+    private getSubPath;
     addComponent(answers: AddComponent, config?: PlopConfig): ReturnType<typeof Component.add>;
     addPage(answers: AddPage, config?: PlopConfig): ReturnType<typeof Page.add>;
     removePage(answers: RemovePage, config?: PlopConfig): ReturnType<typeof Page.remove>;
-    getPage(page: any): Page<Project>;
-    getPages(page: any): Page<Project>[];
+    loadPages(): Page[];
 }

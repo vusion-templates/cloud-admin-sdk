@@ -22,31 +22,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = __importStar(require("fs-extra"));
 const path = __importStar(require("path"));
-const node_plop_1 = __importDefault(require("node-plop"));
-exports.default = {
-    loadPages(root) {
-        return JSON.parse(fs.readFileSync(path.join(root, './pages.json')).toString());
-    },
-    getPlop(config) {
-        let file = path.join(process.cwd(), 'plopfile.js');
-        if (!fs.existsSync(file)) {
-            file = path.join(__dirname, '../../cli/plopfile.js');
+const file_1 = __importDefault(require("../common/file"));
+class MetaData {
+    constructor(root, name) {
+        this.root = root;
+        this.name = name;
+    }
+    load() {
+        const pages = new file_1.default(path.join(this.root, 'pages.json'));
+        const json = pages.loadJSON();
+        if (!json[this.name]) {
+            throw new Error(`page:${this.name} isn't exists`);
         }
-        const plop = node_plop_1.default(file, {
-            destBasePath: config.root,
-            force: !!config.force,
-        });
-        return plop;
-    },
-    getPagePath(answer) {
-        return path.join(answer.root, answer.page);
-    },
-    getModulePath(answer) {
-        return path.join(answer.root, answer.page, answer.module);
-    },
-    getViewPath(answer) {
-        return path.join(answer.root, answer.page, answer.module, 'views');
-    },
-};
+        return json[this.name];
+    }
+    save(content) {
+        const pages = new file_1.default(path.join(this.root, 'pages.json'));
+        const json = pages.loadJSON();
+        json[this.name] = Object.assign({}, json[this.name], content);
+        pages.save(json);
+    }
+}
+exports.default = MetaData;

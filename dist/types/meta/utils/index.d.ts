@@ -8,7 +8,6 @@ declare const _default: {
     getPlop(config: PlopConfig): NodePlop;
     getPagePath(answer: any): string;
     getModulePath(answer: any): string;
-    getServicePath(answer: any): string;
     getViewPath(answer: any): string;
 };
 export default _default;

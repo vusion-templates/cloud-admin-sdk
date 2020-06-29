@@ -27,9 +27,6 @@ export default {
     getModulePath(answer): string {
         return path.join(answer.root, answer.page, answer.module);
     },
-    getServicePath(answer): string {
-        return path.join(answer.root, answer.page, answer.module, 'service');
-    },
     getViewPath(answer): string {
         return path.join(answer.root, answer.page, answer.module, 'views');
     },

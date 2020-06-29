@@ -22,42 +22,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { PlopConfig } from '../utils';
-const path = __importStar(require("path"));
 const fs = __importStar(require("fs-extra"));
-const utils_1 = __importDefault(require("../utils"));
-const utils_2 = require("../../utils");
-class Service {
-    constructor(name, module, page, root, parent) {
-        this.name = name;
-        this.module = module;
-        this.page = page;
-        this.root = root;
-        if (parent) {
-            this.parent = parent;
-        }
+const path = __importStar(require("path"));
+const utils_1 = require("../../utils");
+const common_1 = require("../common");
+const tree_1 = __importDefault(require("../common/tree"));
+const file_1 = __importDefault(require("../common/file"));
+const directory_1 = __importDefault(require("../common/directory"));
+class Service extends tree_1.default {
+    constructor(name, root, parent) {
+        super(name, root, common_1.LEVEL_ENUM.service, parent);
+        this.subFiles = {
+            api: new file_1.default(path.join(this.fullPath, 'api.json')),
+            config: new file_1.default(path.join(this.fullPath, 'api.config.js')),
+            index: new file_1.default(path.join(this.fullPath, 'index.js')),
+        };
     }
     getFullPath() {
-        return path.join(this.root, this.page, this.module, 'service', this.name);
+        return path.join(this.root, 'services', this.name);
     }
     load() {
-        // todo
+        return {
+            api: this.subFiles.api.load(),
+            config: this.subFiles.config.load(),
+            index: this.subFiles.index.load(),
+        };
     }
-    save() {
-        // todo
+    save(content) {
+        content.api && this.subFiles.api.save(content.api);
+        content.config && this.subFiles.api.save(content.config);
+        content.index && this.subFiles.api.save(content.index);
     }
-    remove() {
-        // todo
+    rename(newName) {
+        new directory_1.default(this.fullPath).rename(newName);
     }
     static add(answers) {
-        const dir = path.join(utils_1.default.getServicePath(answers), answers.name);
-        const tplPath = path.resolve(utils_2.templatePath, 'service');
+        const dir = path.join(answers.root, answers.name);
+        const tplPath = path.resolve(utils_1.templatePath, 'service');
         fs.copySync(tplPath, dir);
-        return path.join(dir, 'api.json');
+        if (answers.api) {
+            const api = new file_1.default(path.join(dir, 'api.json'));
+            api.save(answers.api);
+        }
     }
     static remove(answers) {
-        const dir = path.join(utils_1.default.getServicePath(answers), answers.name);
-        fs.removeSync(dir);
+        const dir = path.join(answers.root, answers.name);
+        return new directory_1.default(dir).remove();
     }
 }
 exports.default = Service;

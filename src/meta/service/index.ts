@@ -1,57 +1,67 @@
-// import { PlopConfig } from '../utils';
-import * as path from 'path';
 import * as fs from 'fs-extra';
-import { ProjectPath } from '../common';
-import Utils from '../utils';
+import * as path from 'path';
+import Module from '../module';
 import { templatePath } from '../../utils';
+import { ProjectPath, LEVEL_ENUM } from '../common';
+import Tree from '../common/tree';
+import File from '../common/file';
+import Directory from '../common/directory';
 interface ServicePath {
     root: string;
-    page: string;
-    module: string;
+    name: string;
 }
 export interface AddService extends ServicePath {
-    name: string;
-    content: object;
+    api?: string;
 }
-export interface RemoveService extends ServicePath {
-    name: string;
-}
-export default class Service<T> implements ProjectPath{
-    public name: string;
-    public module: string;
-    public page: string;
-    public root: string;
-    public parent?: T;
-
-    constructor(name: string, module: string, page: string, root: string, parent?: T) {
-        this.name = name;
-        this.module = module;
-        this.page = page;
-        this.root = root;
-        if (parent) {
-            this.parent = parent;
-        }
+export type RemoveService = ServicePath
+type serviceContent = {
+    api?: string;
+    config?: string;
+    index?: string;
+};
+export default class Service extends Tree implements ProjectPath{
+    private subFiles: {
+        api: File;
+        config: File;
+        index: File;
+    };
+    constructor(name: string, root: string, parent: Module) {
+        super(name, root, LEVEL_ENUM.service, parent);
+        this.subFiles = {
+            api:  new File(path.join(this.fullPath, 'api.json')),
+            config: new File(path.join(this.fullPath, 'api.config.js')),
+            index: new File(path.join(this.fullPath, 'index.js')),
+        };
     }
     getFullPath(): string {
-        return path.join(this.root, this.page, this.module, 'service', this.name);
+        return path.join(this.root, 'services', this.name);
     }
-    public load() {
-        // todo
+    public load(): serviceContent {
+        return {
+            api: this.subFiles.api.load(),
+            config: this.subFiles.config.load(),
+            index: this.subFiles.index.load(),
+        };
     }
-    public save() {
-        // todo
+    public save(content: serviceContent): void {
+        content.api && this.subFiles.api.save(content.api);
+        content.config && this.subFiles.api.save(content.config);
+        content.index && this.subFiles.api.save(content.index);
     }
-    public remove() {
-        // todo
+    public rename(newName: string): void {
+        new Directory(this.fullPath).rename(newName);
     }
-    static add(answers: AddService): string {
-        const dir = path.join(Utils.getServicePath(answers), answers.name);
+    static add(answers: AddService): void {
+        const dir = path.join(answers.root, answers.name);
         const tplPath = path.resolve(templatePath, 'service');
         fs.copySync(tplPath, dir);
-        return path.join(dir, 'api.json');
+        if (answers.api) {
+            const api = new File(path.join(dir, 'api.json'));
+            api.save(answers.api);
+        }
     }
     static remove(answers: RemoveService): void {
-        const dir = path.join(Utils.getServicePath(answers), answers.name);
-        fs.removeSync(dir);
+        const dir = path.join(answers.root, answers.name);
+        return new Directory(dir).remove();
     }
 }
