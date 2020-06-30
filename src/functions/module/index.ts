@@ -2,7 +2,7 @@ import Service, {AddService, RemoveService} from '../service';
 import Utils, {PlopConfig} from '../utils';
 import { Layout } from './config';
 import { ProjectPath } from '../common';
-import path from 'path';
+import * as path from 'path';
 export interface AddModule {
     name: string;
     title?: string;

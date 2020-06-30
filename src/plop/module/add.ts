@@ -1,6 +1,6 @@
-import path from 'path';
-import fs from 'fs';
-import chalk from 'chalk';
+import * as path from 'path';
+import * as fs from 'fs-extra';
+import chalk = require('chalk');
 import {getAppConfig} from '../../utils';
 import { Layout } from '../../functions/module/config';
 import actions from './actions';

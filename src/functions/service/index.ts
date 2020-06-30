@@ -1,7 +1,6 @@
 // import { PlopConfig } from '../utils';
-// import * as fse from 'fs-extra';
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs-extra';
 import { ProjectPath } from '../common';
 interface ServicePath {
     root: string;

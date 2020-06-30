@@ -1,5 +1,5 @@
-import chalk from 'chalk';
-import path from 'path';
+import chalk = require('chalk');
+import * as path from 'path';
 import actions from './actions';
 import { Layout } from '../../functions/page/config';
 export default function(plop): any {
